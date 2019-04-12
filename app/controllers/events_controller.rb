@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
 
   def upcoming_events
+    end_date = Date.today.next_month.next_month.next_month
+    events = Event.where(:start_date => Date.today.at_beginning_of_month...end_date.end_of_month)
+    render json: events
   end
 
   def show
